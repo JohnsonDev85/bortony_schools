@@ -106,7 +106,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
     }
   } catch (err) {
     console.error(err);
-    errorEl.textContent = 'Hitilafu imetokea, jaribu tena.';
+    errorEl.textContent = 'Connection error, try again!.';
   }
 });
 
@@ -146,10 +146,10 @@ document.getElementById('submitChangePassBtn').addEventListener('click', async (
     return setFeedback('changePassMsg', 'Jaza sehemu zote.', true);
   }
   if (newPass.length < 4) {
-    return setFeedback('changePassMsg', 'Password mpya iwe angalau herufi/namba 4.', true);
+    return setFeedback('changePassMsg', 'New Password iwe angalau herufi/namba 4.', true);
   }
   if (newPass !== confirmPass) {
-    return setFeedback('changePassMsg', 'Password mpya na uthibitisho hazifanani.', true);
+    return setFeedback('changePassMsg', 'New Password na Comfirmed password hazifanani.', true);
   }
 
   try {
@@ -157,15 +157,15 @@ document.getElementById('submitChangePassBtn').addEventListener('click', async (
     const userSnap = await userRef.get();
 
     if (!userSnap.exists || userSnap.data().password !== oldPass) {
-      return setFeedback('changePassMsg', 'Password ya zamani si sahihi.', true);
+      return setFeedback('changePassMsg', 'Old Password si sahihi.', true);
     }
 
     await userRef.update({ password: newPass });
-    setFeedback('changePassMsg', 'Password imebadilishwa kikamilifu.', false);
+    setFeedback('changePassMsg', 'Password has changed successifully!.', false);
     setTimeout(closeChangePassModal, 1200);
   } catch (err) {
     console.error(err);
-    setFeedback('changePassMsg', 'Hitilafu, jaribu tena.', true);
+    setFeedback('changePassMsg', 'Error, try again.', true);
   }
 });
 
@@ -202,8 +202,8 @@ function renderAllProductsTable() {
       <td>${p.aina === 'uniform' ? 'Uniform' : 'Stationery'}</td>
       <td>${p.kiasiKilichopo}</td>
       <td>
-        <button class="action-btn edit-action-btn" data-id="${p.id}">Hariri</button>
-        <button class="action-btn delete-action-btn" data-id="${p.id}">Futa</button>
+        <button class="action-btn edit-action-btn" data-id="${p.id}">Edit</button>
+        <button class="action-btn delete-action-btn" data-id="${p.id}">Delete</button>
       </td>`;
     tbody.appendChild(tr);
   });
@@ -238,7 +238,7 @@ function renderCategoryDropdown(category, selectId, hintId) {
   if (filtered.length === 0) {
     const opt = document.createElement('option');
     opt.value = '';
-    opt.textContent = 'Hakuna bidhaa - muulize Manager aongeze';
+    opt.textContent = 'Hakuna bidhaa';
     select.appendChild(opt);
   } else {
     filtered.forEach(p => {
@@ -319,14 +319,14 @@ document.getElementById('submitEditProductBtn').addEventListener('click', async 
     setTimeout(() => document.getElementById('editProductModal').classList.add('hidden'), 800);
   } catch (err) {
     console.error(err);
-    setFeedback('editProductMsg', 'Hitilafu, jaribu tena.', true);
+    setFeedback('editProductMsg', 'Error, try again.', true);
   }
 });
 
 function confirmDeleteProduct(productId) {
   const product = allProducts.find(p => p.id === productId);
   if (!product) return;
-  openConfirmDelete(`Utafuta bidhaa "${product.jina}" kabisa. Vitendo hiki hakiwezi kurudishwa.`, async () => {
+  openConfirmDelete(`Utafuta bidhaa "${product.jina}" kabisa. kitendo hiki hakiwezi kurudishwa.`, async () => {
     try {
       await db.collection('products').doc(productId).delete();
     } catch (err) {
@@ -367,8 +367,8 @@ function renderMySalesTable() {
       <td>${formatMoney(s.beiKwaKimoja)}</td>
       <td>${formatMoney(s.jumla)}</td>
       <td>
-        <button class="action-btn edit-action-btn" data-id="${s.id}">Hariri</button>
-        <button class="action-btn delete-action-btn" data-id="${s.id}">Futa</button>
+        <button class="action-btn edit-action-btn" data-id="${s.id}">Edit</button>
+        <button class="action-btn delete-action-btn" data-id="${s.id}">Delete</button>
       </td>`;
     tbody.appendChild(tr);
   });
@@ -492,12 +492,12 @@ document.getElementById('addNewProductBtn').addEventListener('click', async () =
       jumlaMapato: 0,
       tarehe: firebase.firestore.FieldValue.serverTimestamp()
     });
-    setFeedback('stockInMsg', 'Bidhaa mpya imesajiliwa kikamilifu.', false);
+    setFeedback('stockInMsg', 'Bidhaa mpya imeongezwa kikamilifu.', false);
     document.getElementById('newProductName').value = '';
     document.getElementById('newProductQty').value = '';
   } catch (err) {
     console.error(err);
-    setFeedback('stockInMsg', 'Hitilafu, jaribu tena.', true);
+    setFeedback('stockInMsg', 'Error, try again.', true);
   }
 });
 
@@ -550,7 +550,7 @@ async function sellProduct(selectId, priceId, qtyId, msgId, hintId) {
     updateStockHint(selectId, hintId);
   } catch (err) {
     console.error(err);
-    setFeedback(msgId, err.message || 'Hitilafu, jaribu tena.', true);
+    setFeedback(msgId, err.message || 'Error, try again.', true);
   }
 }
 
