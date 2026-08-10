@@ -20,7 +20,7 @@
     <p class="subtitle">School Sales Management System</p>
     <input type="text" id="loginUsername" placeholder="Username" autocomplete="off">
     <input type="password" id="loginPassword" placeholder="Password">
-    <button id="loginBtn">Ingia</button>
+    <button id="loginBtn">Login</button>
     <p id="loginError" class="error-text"></p>
   </div>
 
@@ -40,8 +40,8 @@
       <h2>Manager Dashboard</h2>
     </div>
     <div class="topbar-actions">
-      <button class="change-pass-btn" id="managerChangePassBtn">Badilisha Password</button>
-      <button class="logout-btn" id="managerLogout">Toka</button>
+      <button class="change-pass-btn" id="managerChangePassBtn">Change Password</button>
+      <button class="logout-btn" id="managerLogout">Logout</button>
     </div>
   </header>
 
@@ -60,7 +60,7 @@
         <h3>Ongeza Stock</h3>
         <div class="toggle-group">
           <button class="mode-btn active" id="modeExisting">Bidhaa Iliyopo</button>
-          <button class="mode-btn" id="modeNew">Bidhaa Mpya</button>
+          <button class="mode-btn" id="modeNew">Add Bidhaa Mpya</button>
         </div>
 
         <div id="existingProductForm" class="form-block">
@@ -73,15 +73,15 @@
 
         <div id="newProductForm" class="form-block hidden">
           <label>Jina la Bidhaa</label>
-          <input type="text" id="newProductName" placeholder="mf. Suruali Ndogo">
+          <input type="text" id="newProductName" placeholder="mf. Mzula">
           <label>Aina</label>
           <select id="newProductCategory">
             <option value="uniform">Uniform</option>
-            <option value="stationery">Stationery</option>
+            <option value="stationery">Stationaries</option>
           </select>
-          <label>Kiasi cha Awali</label>
+          <label>Kiasi</label>
           <input type="number" id="newProductQty" min="1" placeholder="mf. 20">
-          <button class="primary-btn" id="addNewProductBtn">Sajili Bidhaa Mpya</button>
+          <button class="primary-btn" id="addNewProductBtn">Add Bidhaa!</button>
         </div>
 
         <p id="stockInMsg" class="feedback-text"></p>
@@ -91,7 +91,7 @@
         <h3>Bidhaa Zote na Stock Iliyopo</h3>
         <div class="table-wrap">
           <table id="allProductsTable">
-            <thead><tr><th>Jina</th><th>Aina</th><th>Stock Iliyopo</th><th>Vitendo</th></tr></thead>
+            <thead><tr><th>Jina</th><th>Aina</th><th>Stock Iliyopo</th><th>Action</th></tr></thead>
             <tbody></tbody>
           </table>
         </div>
@@ -104,7 +104,7 @@
         <h3>Historia ya Mauzo (Stock Out)</h3>
         <div class="table-wrap">
           <table id="stockOutTable">
-            <thead><tr><th>Tarehe</th><th>Bidhaa</th><th>Aina</th><th>Kiasi</th><th>Bei/Kimoja</th><th>Jumla</th></tr></thead>
+            <thead><tr><th>Tarehe</th><th>Bidhaa</th><th>Aina</th><th>Kiasi</th><th>Bei@</th><th>Jumla</th></tr></thead>
             <tbody></tbody>
           </table>
         </div>
@@ -147,8 +147,8 @@
       <h2>Sales Teacher Dashboard</h2>
     </div>
     <div class="topbar-actions">
-      <button class="change-pass-btn" id="salesChangePassBtn">Badilisha Password</button>
-      <button class="logout-btn" id="salesLogout">Toka</button>
+      <button class="change-pass-btn" id="salesChangePassBtn">Change Password</button>
+      <button class="logout-btn" id="salesLogout">Logout</button>
     </div>
   </header>
 
@@ -169,7 +169,7 @@
       </div>
 
       <div class="card sale-card">
-        <h3>Stationery Sales</h3>
+        <h3>Stationaries Sales</h3>
         <label>Chagua Bidhaa</label>
         <select id="stationeryProductSelect"></select>
         <p class="stock-hint" id="stationeryStockHint"></p>
@@ -177,17 +177,17 @@
         <input type="number" id="stationeryPrice" min="0" placeholder="mf. 500">
         <label>Kiasi Kilichouzwa</label>
         <input type="number" id="stationeryQty" min="1" placeholder="mf. 5">
-        <button class="primary-btn" id="stationerySellBtn">Uza</button>
+        <button class="primary-btn" id="stationerySellBtn">Sell</button>
         <p id="stationeryMsg" class="feedback-text"></p>
       </div>
 
     </div>
 
     <div class="card">
-      <h3>Mauzo Yangu</h3>
+      <h3>My sales</h3>
       <div class="table-wrap">
         <table id="mySalesTable">
-          <thead><tr><th>Tarehe</th><th>Bidhaa</th><th>Aina</th><th>Kiasi</th><th>Bei/Kimoja</th><th>Jumla</th><th>Vitendo</th></tr></thead>
+          <thead><tr><th>Tarehe</th><th>Bidhaa</th><th>Aina</th><th>Kiasi</th><th>Bei@</th><th>Jumla</th><th>Action</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -198,17 +198,17 @@
 <!-- ============ MODAL: BADILISHA PASSWORD ============ -->
 <div id="changePassModal" class="modal-overlay hidden">
   <div class="modal-box">
-    <h3>Badilisha Password</h3>
-    <label>Password ya Zamani</label>
+    <h3>Change Password</h3>
+    <label>Put Old Password</label>
     <input type="password" id="oldPasswordInput" autocomplete="off">
-    <label>Password Mpya</label>
+    <label>Put New Password</label>
     <input type="password" id="newPasswordInput" autocomplete="off">
-    <label>Thibitisha Password Mpya</label>
+    <label>Comfirm New Password!</label>
     <input type="password" id="confirmPasswordInput" autocomplete="off">
     <p id="changePassMsg" class="feedback-text"></p>
     <div class="modal-actions">
-      <button class="cancel-btn" id="cancelChangePassBtn">Ghairi</button>
-      <button class="primary-btn" id="submitChangePassBtn">Hifadhi</button>
+      <button class="cancel-btn" id="cancelChangePassBtn">Cancel</button>
+      <button class="primary-btn" id="submitChangePassBtn">Save</button>
     </div>
   </div>
 </div>
@@ -216,20 +216,20 @@
 <!-- ============ MODAL: EDIT PRODUCT ============ -->
 <div id="editProductModal" class="modal-overlay hidden">
   <div class="modal-box">
-    <h3>Hariri Bidhaa</h3>
+    <h3>Edit Bidhaa</h3>
     <label>Jina la Bidhaa</label>
     <input type="text" id="editProductName">
     <label>Aina</label>
     <select id="editProductCategory">
       <option value="uniform">Uniform</option>
-      <option value="stationery">Stationery</option>
+      <option value="stationery">Stationaries</option>
     </select>
     <label>Stock Iliyopo</label>
     <input type="number" id="editProductStock" min="0">
     <p id="editProductMsg" class="feedback-text"></p>
     <div class="modal-actions">
-      <button class="cancel-btn" id="cancelEditProductBtn">Ghairi</button>
-      <button class="primary-btn" id="submitEditProductBtn">Hifadhi</button>
+      <button class="cancel-btn" id="cancelEditProductBtn">Cancel</button>
+      <button class="primary-btn" id="submitEditProductBtn">Save</button>
     </div>
   </div>
 </div>
@@ -237,7 +237,7 @@
 <!-- ============ MODAL: EDIT SALE ============ -->
 <div id="editSaleModal" class="modal-overlay hidden">
   <div class="modal-box">
-    <h3>Hariri Mauzo</h3>
+    <h3>Edit Mauzo</h3>
     <p class="stock-hint" id="editSaleProductLabel"></p>
     <label>Bei kwa Kimoja (TSh)</label>
     <input type="number" id="editSalePrice" min="0">
@@ -245,8 +245,8 @@
     <input type="number" id="editSaleQty" min="1">
     <p id="editSaleMsg" class="feedback-text"></p>
     <div class="modal-actions">
-      <button class="cancel-btn" id="cancelEditSaleBtn">Ghairi</button>
-      <button class="primary-btn" id="submitEditSaleBtn">Hifadhi</button>
+      <button class="cancel-btn" id="cancelEditSaleBtn">Cancel</button>
+      <button class="primary-btn" id="submitEditSaleBtn">Save</button>
     </div>
   </div>
 </div>
@@ -254,11 +254,11 @@
 <!-- ============ MODAL: CONFIRM DELETE ============ -->
 <div id="confirmDeleteModal" class="modal-overlay hidden">
   <div class="modal-box">
-    <h3>Una Uhakika?</h3>
+    <h3>Are you sure?</h3>
     <p id="confirmDeleteMsg" class="stock-hint"></p>
     <div class="modal-actions">
-      <button class="cancel-btn" id="cancelDeleteBtn">Ghairi</button>
-      <button class="primary-btn danger-btn" id="confirmDeleteBtn">Futa</button>
+      <button class="cancel-btn" id="cancelDeleteBtn">Cancel</button>
+      <button class="primary-btn danger-btn" id="confirmDeleteBtn">Delete</button>
     </div>
   </div>
 </div>
